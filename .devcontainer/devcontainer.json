@@ -1,0 +1,29 @@
+{
+  "name": "FireLingo Dev Container",
+  "dockerComposeFile": ["../docker-compose.yml"],
+  "service": "backend",
+  "workspaceFolder": "/app",
+  "remoteUser": "vscode",
+  "shutdownAction": "stopCompose",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-azuretools.vscode-docker",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python"
+      }
+    }
+  },
+  "forwardPorts": [8080,5432,19006],
+  "postCreateCommand": "apt-get update && apt-get install -y git && pip install -r backend/requirements.txt && npm install --prefix mobile",
+  "remoteEnv": {
+    "DJANGO_SETTINGS_MODULE": "firelingo.settings",
+    "DATABASE_URL": "postgres://postgres:postgres@db:5432/mydb"
+  }
+}
+ 
+ 

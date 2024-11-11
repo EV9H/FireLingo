@@ -11,12 +11,11 @@ RUN apt-get update && apt-get install -y \
     git
 
 # Copy requirements and install Python dependencies
-COPY requirements.txt .
+COPY ./backend/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the entire backend project
-COPY . .
-
+COPY ./backend /app
 # Expose the Django development server port
 EXPOSE 8000
 

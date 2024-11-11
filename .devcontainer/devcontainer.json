@@ -1,9 +1,8 @@
 {
   "name": "FireLingo Dev Container",
-  "dockerComposeFile": ["../docker-compose.yml"],
+  "dockerComposeFile": "../docker-compose.yml",
   "service": "backend",
-  "workspaceFolder": "/app",
-  "remoteUser": "vscode",
+  "workspaceFolder": "/backend",
   "shutdownAction": "stopCompose",
   "customizations": {
     "vscode": {
@@ -18,8 +17,8 @@
       }
     }
   },
-  "forwardPorts": [8080,5432,19006],
-  "postCreateCommand": "apt-get update && apt-get install -y git && pip install -r backend/requirements.txt && npm install --prefix mobile",
+  "forwardPorts": [8080,5432],
+  "postCreateCommand": "apt-get update && apt-get install -y git && pip install -r backend/requirements.txt && python manage.py migrate",
   "remoteEnv": {
     "DJANGO_SETTINGS_MODULE": "firelingo.settings",
     "DATABASE_URL": "postgres://postgres:postgres@db:5432/mydb"
